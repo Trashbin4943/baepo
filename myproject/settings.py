@@ -132,6 +132,7 @@ INSTALLED_APPS = [
     'allauth.account',
     'rest_framework_simplejwt',
     'allauth.socialaccount',
+    'decouple',
 ]
 
 AUTH_USER_MODEL = 'accounts.CustomUser'
