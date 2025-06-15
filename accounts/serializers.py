@@ -12,6 +12,7 @@ class CustomRegisterSerializer(RegisterSerializer):
         super(CustomRegisterSerializer, self).get_cleaned_data()
         return {
             'username': self.validated_data.get('username', ''),
+            'email':self.validated_data.get('email')
             'password1': self.validated_data.get('password1', ''),
             'password2': self.validated_data.get('password2', ''),
             'nickname': self.validated_data.get('nickname', ''),
@@ -24,6 +25,7 @@ class CustomRegisterSerializer(RegisterSerializer):
         user = adapter.new_user(request)
         self.cleaned_data = self.get_cleaned_data()
         user.username = self.cleaned_data.get('username')
+        user.email=self.cleaned_data.get('email')
         user.nickname = self.cleaned_data.get('nickname')
         user.university = self.cleaned_data.get('university')
         user.location = self.cleaned_data.get('location')
