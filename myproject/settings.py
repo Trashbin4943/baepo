@@ -24,7 +24,7 @@ from decouple import config
 SECRET_KEY = config('SECRET_KEY')
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+DEBUG = True
 
 ALLOWED_HOSTS = ['127.0.0.1','43.201.187.33','meotjinsaja.site']
 
@@ -115,6 +115,8 @@ STATIC_URL = 'static/'
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
+
+
 INSTALLED_APPS = [
     'django.contrib.admin',
     'django.contrib.auth',
@@ -134,6 +136,8 @@ INSTALLED_APPS = [
     'allauth.socialaccount',
     'decouple',
 ]
+
+
 
 AUTH_USER_MODEL = 'accounts.CustomUser'
 
