@@ -10,7 +10,7 @@ services:
         volumes:
             - .:/app
             - ./static:/app/static
-            - ./media:/app/media # media가 있으면
+            - ./media:/app/media
         networks:
             - server
 
@@ -38,6 +38,10 @@ services:
         volumes:
             - ./cert/certbot/conf:/etc/letsencrypt
             - ./cert/certbot/www:/var/www/certbot
+        command: certonly --webroot --webroot-path=/var/www/certbot --email your@email.com --agree-tos --no-eff-email -d luxurylion.site
+        depends_on:
+            - nginx
 
 networks:
     server:
+    driver: bridge
