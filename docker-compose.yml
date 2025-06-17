@@ -1,4 +1,5 @@
 version: '3'
+
 services:
     web:
         image: server
@@ -46,4 +47,4 @@ services:
 
 networks:
     server:
-    driver: bridge
+        driver: bridge
