@@ -12,4 +12,4 @@ class PostDetailSerializer(serializers.ModelSerializer):
     nickname = serializers.CharField(source='user.nickname', read_only=True)
     class Meta:
         model = Post
-        fields = ['id', 'nickname', 'body', 'title','date']
+        fields = ['id', 'nickname', 'title', 'body', 'date']
