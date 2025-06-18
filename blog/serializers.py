@@ -3,6 +3,7 @@ from .models import Post
 
 
 class PostSerializer(serializers.ModelSerializer):
+    nickname = serializers.CharField(source='user.nickname', read_only=True)
     class Meta:
         model = Post
-        fields = ['id', 'user', 'title', 'body']
+        fields = ['id', 'nickname', 'title', 'body','date']
