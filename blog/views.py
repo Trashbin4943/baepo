@@ -14,11 +14,11 @@ class BlogList(APIView):
 
     def get(self,request):
         blogs=Post.objects.all()
-        serializer=PostSerializer(blogs,many=True)
+        serializer=PostThumbnailSerializer(blogs,many=True)
         return Response(serializer.data)
     
     def post(self,request):
-        serializer=PostSerializer(data=request.data)
+        serializer=PostDetailSerializer(data=request.data)
         if serializer.is_valid(raise_exception=True):
             serializer.save(user=request.user)
             return Response(serializer.data, status=status.HTTP_201_CREATED)
@@ -36,12 +36,12 @@ class BlogDetail(APIView):
 
     def get(self,request,pk):
         blog=self.get_object(pk)
-        serializer=PostSerializer(blog)
+        serializer=PostDetailSerializer(blog)
         return Response(serializer.data, status=status.HTTP_200_OK)
         
     def put(self,request,pk):
         blog=self.get_object(pk)
-        serializer=PostSerializer(blog, data=request.data)
+        serializer=PostDetailSerializer(blog, data=request.data)
         if serializer.is_valid():
             serializer.save()
             return Response(status=status.HTTP_200_OK)
