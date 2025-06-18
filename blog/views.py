@@ -13,19 +13,15 @@ class BlogList(APIView):
     permission_classes=[IsAuthenticatedOrReadOnly]
 
     def get(self,request):
-        print("DEBUG: BlogList GET 메서드가 호출되었습니다.")
         blogs=Post.objects.all()
         serializer=PostSerializer(blogs,many=True)
         return Response(serializer.data)
     
     def post(self,request):
-        print("DEBUG: BlogList POST 메서드가 호출되었습니다.")
         serializer=PostSerializer(data=request.data)
         if serializer.is_valid(raise_exception=True):
             serializer.save(user=request.user)
-            print("DEBUG: 게시물 생성 성공. 201 Created 반환.")
             return Response(serializer.data, status=status.HTTP_201_CREATED)
-        print("DEBUG: 게시물 생성 실패. 400 Bad Request 반환.")
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
 from .permissions import IsOwnerOrReadOnly
